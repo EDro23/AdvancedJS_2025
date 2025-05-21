@@ -28,13 +28,19 @@ document.addEventListener("DOMContentLoaded", () => {
         const msForOneDay = 24 * 60 * 60 * 1000; // hrs * mins * secs * milliseconds  
         const daysToDate = Math.ceil( msFromToday / msForOneDay ); 
 
+        // Hours, minutes and seconds
+        const hours = Math.floor((msFromToday % msForOneDay) / (1000 * 60 * 60));
+        const minutes = Math.floor((msFromToday % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((msFromToday % (1000 * 60)) / 1000);
+
+
         // create and display message 
         const displayDate = eventDate.toDateString();
         let msg = "";
         if (daysToDate == 0) {
             msg = `Hooray! Today is ${eventName}! (${displayDate})`;
         } else if (daysToDate > 0) {
-            msg = `${daysToDate} day(s) until ${eventName}! (${displayDate})`;
+            msg = `${daysToDate} day(s), ${hours} hour(s), ${minutes} minute(s) and ${seconds} second(s) until ${eventName}! (${displayDate})`;
         } else if (daysToDate < 0) {
             msg = `${eventName} happened ${Math.abs(daysToDate)} 
                    day(s) ago. (${displayDate})`;
