@@ -12,28 +12,37 @@
 		<h1>My Contact Info</h1>
 		<div>
 			<label for="name">Name:</label>
-			<input type="text" name="name" id="name">
+			<input type="text" name="name" id="name" required autofocus>
 		</div>
 		<div>
 			<label for="email">E-Mail:</label>
-			<input type="text" name="email" id="email">
+			<input type="email" name="email" id="email" required>
 		</div>
 		<div>
 			<label for="phone">Mobile phone:</label>
-			<input type="text" name="phone" id="phone">
+			<input type="tel" name="phone" id="phone"
+			pattern="\d{3}-\d{3}-\d{4}"
+			placeholder="nnn-nnn-nnnn"
+			title="nnn-nnn-nnnn"
+			required> 
 		</div>
 		<div>
 			<label for="zip">ZIP Code:</label>
-			<input type="text" name="zip" id="zip">
+			<input type="text" name="zip" id="zip"
+			pattern="\d{5}"
+			placeholder="nnnnn"
+			title="nnnnn"
+			required>
 		</div>
 		<div>
 			<label for="dob">Date of Birth:</label>
-			<input type="text" name="dob" id="dob">
+			<input type="date" name="dob" id="dob" 
+			required>
 		</div>
 		<div>
 			<label></label>
-			<button id="save">Save</button>
-			<button id="reset">Reset</button>
+			<button id="save" type="submit">Save</button>
+			<button id="reset" type="reset">Reset</button>
 		</div>
 	</form>
 </body>
