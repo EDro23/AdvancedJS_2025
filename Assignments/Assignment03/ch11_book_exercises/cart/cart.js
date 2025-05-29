@@ -27,13 +27,18 @@ function addRow(lineItem) {
     row.appendChild(makeCol(descr));
     row.appendChild(makeCol("$" + price));
     row.appendChild(makeCol(quantity));
-    row.appendChild(makeCol("Line total goes here"));
+    row.appendChild(makeCol(price * quantity));
 
     table.appendChild(row);
 }
 
 function addSummaryRow(lineItems) {
     // calculate total quantity and amount here
+    let totalAmount = 0;
+    let totalQuantity = 0;
+    for (let item of lineItems) {
+
+    }
 
     const table = document.querySelector("table");
     const row = document.createElement("tr");
@@ -49,6 +54,8 @@ function addSummaryRow(lineItems) {
 document.addEventListener("DOMContentLoaded", () => {
     // get line items
     const lineItems = getLineItems();
+
+    // Arry.sort and sort by the first column
 
     // display line items
     for (let lineItem of lineItems) {
