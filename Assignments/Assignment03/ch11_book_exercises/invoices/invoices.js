@@ -34,7 +34,7 @@ function displayInvoices(invoices) {
 
     // add one row for each invoice
 }
- 
+
 function displayInvoices(invoices) {
     const table = getElement("#invoice_table");
 
@@ -45,8 +45,18 @@ function displayInvoices(invoices) {
     }
 
     // add one row for each invoice
+    invoices.forEach (invoice => {
+        invoice[1] = invoice[1].toFixed(2);
+        invoice[2] = invoice[2].toDateString();
+        const row = document.createElement("tr");
+        invoice.forEach(item => {
+            const col = createCol(item);
+            row.appendChild(col);
+        })
+        table.appendChild(row);
+    })
 }
- 
+
 function filterInvoices() {
     const invoices = getInvoices();
 
@@ -57,9 +67,17 @@ function filterInvoices() {
         const endDate   = new Date(getElement("#end_date").value);        
 
         // add code that finishes this filter
+        return invoiceDate >= startDate && invoiceDate <= endDate;
     });
 
     // filter by paid status
+    filtered = filtered.filter(invoice => {
+        const paid = invoice[3];
+        // Radio button selected, if paid if not paid.       
+
+        // add code that finishes this filter
+        return invoiceDate >= startDate && invoiceDate <= endDate;
+    });
 
     // display the filtered data
     displayInvoices(filtered);
