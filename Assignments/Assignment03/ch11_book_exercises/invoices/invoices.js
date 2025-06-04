@@ -64,24 +64,33 @@ function filterInvoices() {
     let filtered = invoices.filter(invoice => {
         const invoiceDate = invoice[2];
         const startDate = new Date(getElement("#start_date").value);
-        const endDate   = new Date(getElement("#end_date").value);        
+        const endDate = new Date(getElement("#end_date").value);
 
-        // add code that finishes this filter
+        // finish date filter
         return invoiceDate >= startDate && invoiceDate <= endDate;
     });
 
     // filter by paid status
     filtered = filtered.filter(invoice => {
         const paid = invoice[3];
-        // Radio button selected, if paid if not paid.       
 
-        // add code that finishes this filter
-        return invoiceDate >= startDate && invoiceDate <= endDate;
+        // get selected radio button value
+        const selected = document.querySelector("input[name='paid_status']:checked").value;
+
+        // finish paid status filter
+        if (selected === "both") {
+            return true;
+        } else if (selected === "paid") {
+            return paid === true;
+        } else if (selected === "unpaid") {
+            return paid === false;
+        }
     });
 
     // display the filtered data
     displayInvoices(filtered);
 }
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const invoices = getInvoices();
