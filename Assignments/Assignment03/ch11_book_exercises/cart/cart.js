@@ -33,20 +33,23 @@ function addRow(lineItem) {
 }
 
 function addSummaryRow(lineItems) {
-    // calculate total quantity and amount here
     let totalAmount = 0;
     let totalQuantity = 0;
-    for (let item of lineItems) {
 
+    for (let item of lineItems) {
+        const price = item[1];
+        const quantity = item[2];
+        totalQuantity += quantity;
+        totalAmount += price * quantity;
     }
 
     const table = document.querySelector("table");
     const row = document.createElement("tr");
 
     row.appendChild(makeCol("TOTAL"));
-    row.appendChild(makeCol(""));
-    row.appendChild(makeCol("totalQty"));
-    row.appendChild(makeCol("totalAmount"));
+    row.appendChild(makeCol("")); // No total for price column
+    row.appendChild(makeCol(totalQuantity));
+    row.appendChild(makeCol("$" + totalAmount.toFixed(2)));
 
     table.appendChild(row);
 }
@@ -57,10 +60,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Arry.sort and sort by the first column
 
+    lineItems.sort((a, b) => {
+        const descrA = a[0].toLowerCase();
+        const descrB = b[0].toLowerCase();
+        return descrA.localeCompare(descrB)
+    })
+
     // display line items
-    for (let lineItem of lineItems) {
+    lineItems.forEach(lineItem => {
         addRow(lineItem);
-    }
+    })    
+
 
     // add summary row
     addSummaryRow(lineItems);
