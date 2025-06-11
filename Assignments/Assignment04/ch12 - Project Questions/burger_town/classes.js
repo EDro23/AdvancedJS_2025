@@ -1,6 +1,6 @@
 "use strict";
 
-class Burger {
+export class Burger {
     constructor(type = "regular", size = "single", toppings = []) {
         this.type = type;
         this.size = size;
@@ -31,7 +31,7 @@ class Burger {
     }
 }
 
-class Drink {
+export class Drink {
     constructor(type = "water", size = "small") {
         this.type = type;
         this.size = size;
@@ -65,7 +65,7 @@ class Drink {
     }
 }
 
-class Fries {
+export class Fries {
     constructor(type = "regular", size = "small") {
         this.type = type;
         this.size = size;
@@ -97,7 +97,7 @@ class Fries {
     }
 }
 
-class Order {
+export class Order {
     constructor() {
         this.items = [];
     }

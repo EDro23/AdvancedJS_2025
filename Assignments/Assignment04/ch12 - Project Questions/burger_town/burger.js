@@ -1,5 +1,7 @@
 "use strict";
 
+import { Burger, Drink, Fries, Order } from "./classes.js";
+
 const getElement = selector => document.querySelector(selector);
 
 const getCheckedValue = name => {
