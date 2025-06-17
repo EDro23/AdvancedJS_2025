@@ -15,3 +15,6 @@ class Trip {
         return `${this.destination}: Miles - ${this.miles}; MPG - ${mpg}`;
     }
 }
+
+export { Trip };  // export the Trip class for use in other modules
+export default Trip;  // also export as default for convenience

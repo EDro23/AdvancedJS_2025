@@ -1,5 +1,9 @@
 "use strict";
 
+import Trip from "./lib_trip.js";
+import Trips from "./lib_trips.js";
+import { isAnyEmpty, isInvalidNumber } from "./lib_validation.js";
+
 const getElement = selector => document.querySelector(selector);
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -14,27 +18,25 @@ document.addEventListener("DOMContentLoaded", () => {
         const gallons = getElement("#gallons").value;
         const trip = new Trip(destination, miles, gallons);
 
-        if (destination == "" || miles == "" || gallons == "") {
+        if (isAnyEmpty(destination, miles, gallons)) {
             msgElement.textContent = "All fields are required.";
             getElement("#destination").focus();
-        } else if (isNaN(trip.miles) || trip.miles < 0) {
-            msgElement.textContent = 
-                "Miles must be a valid number greater than zero.";
+        } else if (isInvalidNumber(miles)) {
+            msgElement.textContent = "Miles must be a valid number greater than zero.";
             getElement("#miles").select();
-        } else if (isNaN(trip.gallons) || trip.gallons < 0) {
-            msgElement.textContent = 
-                "Gallons must be a valid number greater than zero.";
+        } else if (isInvalidNumber(gallons)) {
+            msgElement.textContent = "Gallons must be a valid number greater than zero.";
             getElement("#gallons").select();
         } else {
             trips.push(trip); 
             getElement("#trip_list").value = trips;
-    
+
             getElement("#destination").value = "";
             getElement("#miles").value = "";
             getElement("#gallons").value = ""; 
             getElement("#destination").focus();   
         }
     });
-    
+
     getElement("#destination").focus();  // initial load
 });

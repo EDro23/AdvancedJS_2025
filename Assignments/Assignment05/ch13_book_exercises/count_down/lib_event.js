@@ -1,5 +1,8 @@
 "use strict";
 
+export default Event;
+export { Event };  // export the Event class for use in other modules
+
 class Event {
     #dateString = "";
     constructor(name, dateString) {

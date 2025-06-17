@@ -1,3 +1,4 @@
+import Trip from "./lib_trip.js";  // import the Trip class
 "use strict";
 
 class Trips {
@@ -34,3 +35,6 @@ class Trips {
         return str;
     }
 }
+
+export default Trips;
+  // also export as default for convenience
